@@ -582,7 +582,7 @@
     --card-active-img-width: 100%;
     --card-active-img-radius: var(--radius-lg) var(--radius-lg) 0px 0px;
     --card-active-content-width: 100%;
-    --card-content-padding: var(--space-lg);
+    --card-content-padding: var(--space-md);
     --card-content-min-width: 100%;
   }
 }
@@ -848,6 +848,10 @@
 
 /* Mobile responsive stacked card rules */
 @media (max-width: 860px) {
+  .services__slider-track {
+    align-items: flex-start;
+  }
+
   .services__slider-card {
     flex-direction: column;
     min-height: auto;
@@ -869,6 +873,10 @@
 }
 
 @media (max-width: 768px) {
+  .services__slider-viewport {
+    padding: var(--space-md) 0 var(--space-xl) 0;
+  }
+
   .services__controls-row {
     justify-content: center;
     margin-top: var(--space-md);

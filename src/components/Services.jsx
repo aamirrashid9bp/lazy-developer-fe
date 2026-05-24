@@ -104,6 +104,7 @@ const bubbleConfig = [
 export default function Services() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -113,9 +114,16 @@ export default function Services() {
       setMousePosition({ x, y });
     };
 
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', checkMobile);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', checkMobile);
     };
   }, []);
 
@@ -127,11 +135,9 @@ export default function Services() {
     setActiveIdx((prev) => (prev - 1 + services.length) % services.length);
   };
 
-  const slideTransition = {
-    type: 'spring',
-    stiffness: 260,
-    damping: 30,
-  };
+  const slideTransition = isMobile
+    ? { type: 'tween', ease: [0.25, 1, 0.5, 1], duration: 0.6 }
+    : { type: 'spring', stiffness: 260, damping: 30 };
 
   return (
     <section id="services" className="section services">
@@ -246,8 +252,10 @@ export default function Services() {
             className="services__slider-track"
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={isMobile ? 0.15 : 0.5}
+            dragMomentum={false}
             onDragEnd={(event, info) => {
-              const swipeThreshold = 50;
+              const swipeThreshold = isMobile ? 80 : 50;
               if (info.offset.x < -swipeThreshold) {
                 handleNext();
               } else if (info.offset.x > swipeThreshold) {
@@ -306,9 +314,12 @@ export default function Services() {
                     className="services__card-content"
                     animate={{
                       width: isActive ? 'var(--card-active-content-width)' : '0%',
+                      height: isActive ? 'auto' : '0px',
                       opacity: isActive ? 1 : 0,
                       paddingLeft: isActive ? 'var(--card-content-padding)' : '0px',
                       paddingRight: isActive ? 'var(--card-content-padding)' : '0px',
+                      paddingTop: isActive ? 'var(--card-content-padding)' : '0px',
+                      paddingBottom: isActive ? 'var(--card-content-padding)' : '0px',
                       borderLeftColor: isActive ? 'rgba(0, 0, 0, 0.04)' : 'rgba(0, 0, 0, 0)',
                     }}
                     transition={slideTransition}
