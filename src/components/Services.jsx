@@ -255,7 +255,7 @@ export default function Services() {
               }
             }}
             animate={{
-              x: `calc(-1 * (${activeIdx} * (var(--card-preview-width) + var(--card-gap)) + var(--card-width) / 2) - (var(--card-width) * 0.12))`,
+              x: `calc(-1 * (${activeIdx} * (var(--card-preview-width) + var(--card-gap)) + var(--card-width) / 2) - var(--card-offset))`,
             }}
             transition={slideTransition}
           >
@@ -268,7 +268,7 @@ export default function Services() {
                   animate={{
                     width: isActive ? 'var(--card-width)' : 'var(--card-preview-width)',
                     opacity: isActive ? 1 : 0.6,
-                    scale: isActive ? 1.0 : 0.94,
+                    scale: isActive ? 'var(--card-active-scale)' : 'var(--card-preview-scale)',
                     y: isActive ? 0 : 8,
                     boxShadow: isActive 
                       ? '0 30px 60px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(0, 0, 0, 0.04)' 
@@ -284,7 +284,7 @@ export default function Services() {
                   <motion.div 
                     className="services__card-image-wrapper"
                     animate={{
-                      width: isActive ? '42%' : '100%',
+                      width: isActive ? 'var(--card-active-img-width)' : '100%',
                     }}
                     transition={slideTransition}
                   >
@@ -294,21 +294,21 @@ export default function Services() {
                       className="services__card-image"
                       animate={{
                         borderRadius: isActive 
-                          ? 'var(--radius-lg) 0px 0px var(--radius-lg)' 
+                          ? 'var(--card-active-img-radius)' 
                           : 'var(--radius-lg)',
                       }}
                       whileHover={isActive ? { scale: 1.08 } : {}}
                       transition={slideTransition}
                     />
                   </motion.div>
-
+ 
                   <motion.div 
                     className="services__card-content"
                     animate={{
-                      width: isActive ? '58%' : '0%',
+                      width: isActive ? 'var(--card-active-content-width)' : '0%',
                       opacity: isActive ? 1 : 0,
-                      paddingLeft: isActive ? 'var(--space-xl)' : '0px',
-                      paddingRight: isActive ? 'var(--space-xl)' : '0px',
+                      paddingLeft: isActive ? 'var(--card-content-padding)' : '0px',
+                      paddingRight: isActive ? 'var(--card-content-padding)' : '0px',
                       borderLeftColor: isActive ? 'rgba(0, 0, 0, 0.04)' : 'rgba(0, 0, 0, 0)',
                     }}
                     transition={slideTransition}
@@ -317,7 +317,7 @@ export default function Services() {
                       pointerEvents: isActive ? 'auto' : 'none'
                     }}
                   >
-                    <div style={{ minWidth: '380px' }}>
+                    <div style={{ minWidth: 'var(--card-content-min-width)' }}>
                       <div className="services__card-header">
                         <div className="services__card-icon">
                           <svc.icon size={22} strokeWidth={1.5} />
