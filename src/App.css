@@ -854,7 +854,8 @@
 
   .services__slider-card {
     flex-direction: column;
-    min-height: auto;
+    min-height: 0 !important;
+    height: auto !important;
   }
   
   .services__card-image-wrapper {
@@ -869,6 +870,9 @@
     gap: var(--space-sm);
     border-left: none;
     border-top: 1px solid rgba(0, 0, 0, 0.04);
+    justify-content: flex-start !important;
+    min-height: 0 !important;
+    height: auto !important;
   }
 }
 
