@@ -76,8 +76,13 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--navbar-height);
-  max-width: 100%;
+  max-width: 100vw;
   overflow-x: hidden;
+}
+
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -89,7 +94,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  max-width: 100%;
+  max-width: 100vw;
   overflow-x: hidden;
 }
 
@@ -108,9 +113,9 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
-h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: var(--fw-black); }
-h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: var(--fw-extrabold); }
-h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: var(--fw-semibold); }
+h1 { font-size: clamp(2.2rem, 5vw, 4rem); font-weight: var(--fw-black); }
+h2 { font-size: clamp(1.75rem, 4vw, 3rem); font-weight: var(--fw-extrabold); }
+h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: var(--fw-semibold); }
 h4 { font-size: 1.125rem; font-weight: var(--fw-semibold); }
 
 p {
@@ -288,7 +293,7 @@ input, textarea {
 }
 
 @media (max-width: 768px) {
-  .section { padding: var(--space-3xl) 0; }
+  .section { padding: var(--space-2xl) 0; }
   .container { padding: 0 var(--space-md); }
   .grid-2 { grid-template-columns: 1fr; }
   .grid-3 { grid-template-columns: 1fr; }

@@ -471,12 +471,16 @@
 
 @media (max-width: 900px) {
   .hero {
-    min-height: 100vh;
-    padding-top: calc(var(--navbar-height) + var(--space-3xl));
-    padding-bottom: var(--space-4xl);
+    min-height: auto;
+    padding-top: calc(var(--navbar-height) + var(--space-2xl));
+    padding-bottom: var(--space-2xl);
   }
   .hero__content {
     padding: 0 var(--space-md);
+    gap: var(--space-sm);
+  }
+  .hero__subtitle {
+    margin: 0 auto var(--space-md) auto;
   }
 }
 
@@ -583,19 +587,20 @@
     --card-active-img-width: 100%;
     --card-active-img-radius: var(--radius-lg) var(--radius-lg) 0px 0px;
     --card-active-content-width: 100%;
-    --card-content-padding: var(--space-md);
+    --card-content-padding: 12px;
     --card-content-min-width: 100%;
   }
 }
 
 @media (max-width: 768px) {
   :root {
-    --card-width: 80vw;
-    --card-preview-width: 20vw;
-    --card-gap: 16px;
-    --card-offset: calc(var(--card-width) * 0.04);
+    --card-width: 85vw;
+    --card-preview-width: 15vw;
+    --card-gap: 12px;
+    --card-offset: 0px;
     --card-active-scale: 0.98;
     --card-preview-scale: 0.88;
+    --card-content-padding: 10px;
   }
 }
 
@@ -603,10 +608,11 @@
   :root {
     --card-width: 85vw;
     --card-preview-width: 15vw;
-    --card-gap: 12px;
-    --card-offset: calc(var(--card-width) * 0.02);
+    --card-gap: 8px;
+    --card-offset: 0px;
     --card-active-scale: 0.98;
     --card-preview-scale: 0.88;
+    --card-content-padding: 8px;
   }
 }
 
@@ -779,7 +785,7 @@
 /* Content Area */
 .services__card-content {
   width: 58%;
-  padding: var(--space-xl);
+  padding: var(--card-content-padding);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -869,7 +875,7 @@
   }
   
   .services__card-content {
-    gap: var(--space-sm);
+    gap: 8px;
     border-left: none;
     border-top: 1px solid rgba(0, 0, 0, 0.04);
     justify-content: flex-start !important;
@@ -888,8 +894,8 @@
 
   .services__controls-row {
     justify-content: center;
-    margin-top: var(--space-md);
-    margin-bottom: var(--space-md);
+    margin-top: 0;
+    margin-bottom: var(--space-sm);
   }
 
   .services__arrow-btn {
