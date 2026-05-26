@@ -147,94 +147,97 @@ export default function Hero() {
 
   return (
     <section id="home" className="hero section">
-      {/* Animated holographic background waves with smooth crossfade slideshow */}
-      <div className="hero__animated-bg-wrapper">
-        <AnimatePresence mode="popLayout">
+      {/* Background container wrapper to isolate animations and overflow */}
+      <div className="section-bg-wrapper">
+        {/* Animated holographic background waves with smooth crossfade slideshow */}
+        <div className="hero__animated-bg-wrapper" style={{ overflow: 'hidden' }}>
+          <AnimatePresence mode="popLayout">
+            <motion.div
+              key={bgIdx}
+              className="hero__animated-bg"
+              style={{ backgroundImage: `url(${backgrounds[bgIdx]})` }}
+              initial={{ opacity: 0, scale: 1.02 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1.08,
+              }}
+              exit={{ opacity: 0 }}
+              transition={{
+                opacity: { duration: 2.0, ease: 'easeInOut' },
+                scale: { duration: 6.8, ease: 'linear' }
+              }}
+            />
+          </AnimatePresence>
+        </div>
+
+        {/* Glassmorphic blur and lighting overlay */}
+        <div className="hero__glass-overlay" />
+
+        {/* Ambient background glows */}
+        {ambientGlowConfig.map((glow, idx) => (
           <motion.div
-            key={bgIdx}
-            className="hero__animated-bg"
-            style={{ backgroundImage: `url(${backgrounds[bgIdx]})` }}
-            initial={{ opacity: 0, scale: 1.02 }}
-            animate={{ 
-              opacity: 1, 
-              scale: 1.08,
-            }}
-            exit={{ opacity: 0 }}
-            transition={{
-              opacity: { duration: 2.0, ease: 'easeInOut' },
-              scale: { duration: 6.8, ease: 'linear' }
-            }}
-          />
-        </AnimatePresence>
-      </div>
-
-      {/* Glassmorphic blur and lighting overlay */}
-      <div className="hero__glass-overlay" />
-
-      {/* Ambient background glows */}
-      {ambientGlowConfig.map((glow, idx) => (
-        <motion.div
-          key={`glow-${idx}`}
-          className={glow.className}
-          style={{
-            width: glow.size,
-            height: glow.size,
-            left: glow.xStart,
-            top: glow.yStart,
-          }}
-          animate={{
-            x: glow.xAnimate,
-            y: glow.yAnimate,
-          }}
-          transition={{
-            duration: glow.duration,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
-
-      {/* Floating glassmorphic bubbles with mouse parallax */}
-      {bubbleConfig.map((bubble, idx) => (
-        <motion.div
-          key={`bubble-wrapper-${idx}`}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            pointerEvents: 'none',
-            zIndex: 2,
-          }}
-          animate={{
-            x: mousePosition.x * bubble.parallaxFactor,
-            y: mousePosition.y * bubble.parallaxFactor,
-          }}
-          transition={{
-            type: 'spring',
-            stiffness: 75,
-            damping: 24,
-          }}
-        >
-          <motion.div
-            className={bubble.className}
+            key={`glow-${idx}`}
+            className={glow.className}
             style={{
-              width: bubble.size,
-              height: bubble.size,
-              left: bubble.xStart,
-              top: bubble.yStart,
+              width: glow.size,
+              height: glow.size,
+              left: glow.xStart,
+              top: glow.yStart,
             }}
             animate={{
-              x: bubble.xAnimate,
-              y: bubble.yAnimate,
-              scale: bubble.scaleAnimate,
+              x: glow.xAnimate,
+              y: glow.yAnimate,
             }}
             transition={{
-              duration: bubble.duration,
+              duration: glow.duration,
               repeat: Infinity,
               ease: 'easeInOut',
             }}
           />
-        </motion.div>
-      ))}
+        ))}
+
+        {/* Floating glassmorphic bubbles with mouse parallax */}
+        {bubbleConfig.map((bubble, idx) => (
+          <motion.div
+            key={`bubble-wrapper-${idx}`}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              pointerEvents: 'none',
+              zIndex: 2,
+            }}
+            animate={{
+              x: mousePosition.x * bubble.parallaxFactor,
+              y: mousePosition.y * bubble.parallaxFactor,
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 75,
+              damping: 24,
+            }}
+          >
+            <motion.div
+              className={bubble.className}
+              style={{
+                width: bubble.size,
+                height: bubble.size,
+                left: bubble.xStart,
+                top: bubble.yStart,
+              }}
+              animate={{
+                x: bubble.xAnimate,
+                y: bubble.yAnimate,
+                scale: bubble.scaleAnimate,
+              }}
+              transition={{
+                duration: bubble.duration,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+          </motion.div>
+        ))}
+      </div>
 
       <div className="container hero__inner">
         {/* Core Text Content */}

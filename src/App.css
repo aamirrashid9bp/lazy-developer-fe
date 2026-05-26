@@ -487,6 +487,7 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
+  padding-bottom: var(--space-xl); /* Tighten bottom spacing on desktop */
 }
 
 /* Services Ambient Glows */
@@ -708,9 +709,10 @@
 }
 
 .services__slider-viewport {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
   overflow: hidden;
   position: relative;
   padding: var(--space-lg) 0 var(--space-2xl) 0;
@@ -877,8 +879,11 @@
 }
 
 @media (max-width: 768px) {
+  .services {
+    padding-bottom: 0;
+  }
   .services__slider-viewport {
-    padding: var(--space-md) 0 var(--space-xl) 0;
+    padding: var(--space-md) 0 0 0;
   }
 
   .services__controls-row {
@@ -921,6 +926,7 @@
   overflow: hidden;
   background: #0b0b14; /* Dark futuristic black/blue background */
   z-index: 1;
+  padding-top: var(--space-3xl); /* Tighten top spacing on desktop */
 }
 
 .upcoming .section-header h2 {
@@ -945,6 +951,12 @@
   width: 100%;
   position: relative;
   z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .upcoming {
+    padding-top: 0;
+  }
 }
 
 /* Upcoming Ambient Glows on Dark Background */
@@ -1559,4 +1571,13 @@
   .footer__links {
     grid-template-columns: 1fr;
   }
+}
+
+/* Background wrapping to prevent absolute positioned element overflows */
+.section-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
 }

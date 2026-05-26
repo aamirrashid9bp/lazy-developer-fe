@@ -141,70 +141,73 @@ export default function Services() {
 
   return (
     <section id="services" className="section services">
-      {/* Ambient background glows */}
-      {ambientGlowConfig.map((glow, idx) => (
-        <motion.div
-          key={`glow-${idx}`}
-          className={glow.className}
-          style={{
-            width: glow.size,
-            height: glow.size,
-            left: glow.xStart,
-            top: glow.yStart,
-          }}
-          animate={{
-            x: glow.xAnimate,
-            y: glow.yAnimate,
-          }}
-          transition={{
-            duration: glow.duration,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
-
-      {/* Floating glassmorphic bubbles with mouse parallax */}
-      {bubbleConfig.map((bubble, idx) => (
-        <motion.div
-          key={`bubble-wrapper-${idx}`}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            pointerEvents: 'none',
-            zIndex: 1,
-          }}
-          animate={{
-            x: mousePosition.x * bubble.parallaxFactor,
-            y: mousePosition.y * bubble.parallaxFactor,
-          }}
-          transition={{
-            type: 'spring',
-            stiffness: 75,
-            damping: 24,
-          }}
-        >
+      {/* Background container wrapper to isolate animations and overflow */}
+      <div className="section-bg-wrapper">
+        {/* Ambient background glows */}
+        {ambientGlowConfig.map((glow, idx) => (
           <motion.div
-            className={bubble.className}
+            key={`glow-${idx}`}
+            className={glow.className}
             style={{
-              width: bubble.size,
-              height: bubble.size,
-              left: bubble.xStart,
-              top: bubble.yStart,
+              width: glow.size,
+              height: glow.size,
+              left: glow.xStart,
+              top: glow.yStart,
             }}
             animate={{
-              x: bubble.xAnimate,
-              y: bubble.yAnimate,
-              scale: bubble.scaleAnimate,
+              x: glow.xAnimate,
+              y: glow.yAnimate,
             }}
             transition={{
-              duration: bubble.duration,
+              duration: glow.duration,
               repeat: Infinity,
               ease: 'easeInOut',
             }}
           />
-        </motion.div>
-      ))}
+        ))}
+
+        {/* Floating glassmorphic bubbles with mouse parallax */}
+        {bubbleConfig.map((bubble, idx) => (
+          <motion.div
+            key={`bubble-wrapper-${idx}`}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              pointerEvents: 'none',
+              zIndex: 1,
+            }}
+            animate={{
+              x: mousePosition.x * bubble.parallaxFactor,
+              y: mousePosition.y * bubble.parallaxFactor,
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 75,
+              damping: 24,
+            }}
+          >
+            <motion.div
+              className={bubble.className}
+              style={{
+                width: bubble.size,
+                height: bubble.size,
+                left: bubble.xStart,
+                top: bubble.yStart,
+              }}
+              animate={{
+                x: bubble.xAnimate,
+                y: bubble.yAnimate,
+                scale: bubble.scaleAnimate,
+              }}
+              transition={{
+                duration: bubble.duration,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+          </motion.div>
+        ))}
+      </div>
 
       <div className="container">
         {/* Centered Section Header */}
