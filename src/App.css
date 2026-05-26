@@ -584,11 +584,11 @@
 
 @media (max-width: 860px) {
   :root {
-    --card-active-img-width: 100%;
-    --card-active-img-radius: var(--radius-lg) var(--radius-lg) 0px 0px;
-    --card-active-content-width: 100%;
+    --card-active-img-width: 40%;
+    --card-active-img-radius: var(--radius-lg) 0px 0px var(--radius-lg);
+    --card-active-content-width: 60%;
     --card-content-padding: 12px;
-    --card-content-min-width: 100%;
+    --card-content-min-width: 160px;
   }
 }
 
@@ -854,20 +854,19 @@
   transform: translateX(4px);
 }
 
-/* Mobile responsive stacked card rules */
+/* Mobile responsive horizontal card rules */
 @media (max-width: 860px) {
   .services__slider-track {
-    align-items: flex-start;
+    align-items: center;
   }
 
   .services__slider-card {
-    flex-direction: column;
-    min-height: 0 !important;
-    height: auto !important;
+    height: 240px !important;
+    min-height: 240px !important;
   }
   
   .services__card-image-wrapper {
-    height: 200px;
+    height: 100%;
   }
   
   .services__card-image {
@@ -875,18 +874,22 @@
   }
   
   .services__card-content {
-    gap: 8px;
-    border-left: none;
-    border-top: 1px solid rgba(0, 0, 0, 0.04);
-    justify-content: flex-start !important;
-    min-height: 0 !important;
-    height: auto !important;
+    gap: 12px;
+    border-left: 1px solid rgba(0, 0, 0, 0.04);
+    justify-content: center !important;
+  }
+
+  .services__card-content p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 
 @media (max-width: 768px) {
   .services {
-    padding-bottom: 0;
+    padding-bottom: var(--space-2xl);
   }
   .services__slider-viewport {
     padding: var(--space-md) 0 0 0;
@@ -912,15 +915,25 @@
     font-size: 1.25rem;
   }
 
+  .services__slider-card {
+    height: 220px !important;
+    min-height: 220px !important;
+  }
+
   .services__card-content p {
     font-size: 0.95rem;
     line-height: 1.6;
+    -webkit-line-clamp: 2;
   }
 }
 
 @media (max-width: 480px) {
-  .services__card-image-wrapper {
-    height: 160px;
+  .services__slider-card {
+    height: 200px !important;
+    min-height: 200px !important;
+  }
+  .services__card-content p {
+    -webkit-line-clamp: 2;
   }
 }
 
@@ -961,7 +974,7 @@
 
 @media (max-width: 768px) {
   .upcoming {
-    padding-top: 0;
+    padding-top: var(--space-2xl);
   }
 }
 
